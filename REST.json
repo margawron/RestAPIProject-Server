@@ -1,0 +1,81 @@
+//  GET 
+//  /api/users/<nazwa>
+//  Zwrotne pola:
+// HTTP CODES: 200,404,500
+{
+    "user_id": "<id>",
+    "user_name": "<nazwa>",
+    "user_password": "<hasło>",
+    "user_num_of_events": "ilosc wydarzen"
+}
+// /api/users/<nazwa>/events/<nr>(/)
+
+{
+    "event_id":"<id>",
+    "event_min": "<minuty>",
+    "event_hour": "<godziny>",
+    "event_day": "<dzien>",
+    "event_month": "<miesiac>",
+    "event_year": "<rok>",
+    "event_desc": "<opis>"
+}
+ 
+// HEAD
+//  /api/users/<nazwa>
+// /api/users/<nazwa>/events/<nr>(/)
+// HTTP CODES: 200,404,500
+
+// POST 
+//  /api/users/<nazwa>
+// Wymagane pola:
+// HTTP CODES: 200,400,404,409,500
+{
+    "user_name":"<nazwa>",
+    "user_password":"<haslo>"
+}
+// /api/users/<nazwa>/events/<nr>(/)
+{
+    "event_min": "<minuty>",
+    "event_hour": "<godziny>",
+    "event_day": "<dni_msca>",
+    "event_month": "<miesiac>",
+    "event_year": "<rok>",
+    "event_desc": "<opis>"
+}
+
+// DELETE
+//  /api/users/<nazwa>
+// HTTP CODES 200,404,500
+{
+    "user_name":"<nazwa>"
+}
+
+// /api/users/<nazwa>/events/<nr>(/)
+{
+    "event_id":"<id>"
+}
+
+// PUT 
+//  /api/users/<nazwa>
+// HTTP CODES 202,400,404,500
+{
+    // ignorowane
+    "user_id": "<id>",
+    "user_name":"<nazwa>",
+    // mutable / zmienne
+    "user_password":"<haslo>",
+    "user_num_of_events": "ilosc wydarzen"
+}
+
+// /api/users/<nazwa>/events/<nr>(/)
+{
+    // ignorowane
+    "event_id":"<id>",
+    // mutable / zmienne
+    "event_min": "<minuty>",
+    "event_hour": "<godziny>",
+    "event_day": "<dzien>",
+    "event_month": "<miesiac>",
+    "event_year": "<rok>",
+    "event_desc": "<opis>"
+}
