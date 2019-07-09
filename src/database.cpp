@@ -62,7 +62,7 @@ std::pair<std::shared_ptr<User>,int> Database::get_user(std::string name)
     // Jeżeli użytkownik nie istnieje zwróć nullptr
     if(!fs::exists(this_function_dir))
     {
-        return std::pair(nullptr,404);
+        return std::pair<std::shared_ptr<User>,int>(nullptr,404);
     }
     std::fstream user_cfg_file(this_function_dir + "this.cfg" ,std::ios::in);
     // Jeżeli otwarcie pliku nie było możliwe
@@ -70,7 +70,7 @@ std::pair<std::shared_ptr<User>,int> Database::get_user(std::string name)
     // zwróć nullptr
     if(!user_cfg_file.good())
     {
-        return std::pair(nullptr,500);
+        return std::pair<std::shared_ptr<User>,int>(nullptr,500);
     }
     // Wczytaj dane użytkownika
     std::shared_ptr<User> user =std::make_shared<User>();
@@ -79,7 +79,7 @@ std::pair<std::shared_ptr<User>,int> Database::get_user(std::string name)
     user_cfg_file >> user->password_;
     user_cfg_file >> user->amount_of_events;
     // Zwróć wskaźnik na użytkownika
-    return std::pair(user,200);
+    return std::pair<std::shared_ptr<User>,int>(user,200);
 }
 
 std::pair<std::shared_ptr<Event>,int> Database::get_user_event(unsigned int id, std::string name)
@@ -87,12 +87,12 @@ std::pair<std::shared_ptr<Event>,int> Database::get_user_event(unsigned int id, 
     std::string this_function_dir(DB_DIR + "/" + name + "/" + DB_EVENT_DIR + "/" + std::to_string(id) + ".txt");
     if(!fs::exists(this_function_dir))
     {
-        return std::pair(nullptr,404);
+        return std::pair<std::shared_ptr<Event>,int>(nullptr,404);
     }
     std::fstream event_file(this_function_dir, std::ios::in);
     if(!event_file.good())  // Nie można otworzyć pliku
     {
-        return std::pair(nullptr,500);
+        return std::pair<std::shared_ptr<Event>,int>(nullptr,500);
     }
     std::shared_ptr<Event> ret_val = std::make_shared<Event>();
     event_file >> ret_val->id_;
@@ -104,7 +104,7 @@ std::pair<std::shared_ptr<Event>,int> Database::get_user_event(unsigned int id, 
     event_file >> std::noskipws;
     ret_val->desc_ = std::string(std::istream_iterator<char>(event_file),std::istream_iterator<char>());
     event_file.close();
-    return std::pair(ret_val,200);
+    return std::pair<std::shared_ptr<Event>,int>(ret_val,200);
 }
 
 int Database::create_user(std::string name,std::string password)
