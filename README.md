@@ -1,4 +1,4 @@
-<h1>Serwer obsługujący zapytania REST API</h1>
+<h1>Serwer HTTP wykorzystujący architekturę REST</h1>
 <p>Serwer który akceptuje zapytania REST oraz<br>
 wykonuje odpowiednie zapytania na zaimplementowanej prostej bazie danych</p>
 <b>Użycie:</b>
